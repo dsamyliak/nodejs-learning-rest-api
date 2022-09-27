@@ -1,7 +1,17 @@
 const path = require("path");
 const fs = require("fs/promises");
 const { nanoid } = require("nanoid");
+const mongoose = require("mongoose");
 
+// new db connection
+const DB_HOST =
+  "mongodb+srv://dsamyliak:170488samR@cluster0.1mby3xv.mongodb.net/db-contacts?retryWrites=true&w=majority";
+mongoose
+  .connect(DB_HOST)
+  .then(() => console.log("Database connection successful"))
+  .catch((error) => console.log(error.message));
+
+// old db file
 const contactsPath = path.join(__dirname, "/contacts.json");
 
 const updateContacts = async (contacts) =>
