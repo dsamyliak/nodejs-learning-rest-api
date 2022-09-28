@@ -7,17 +7,17 @@ const dotenv = require("dotenv");
 // const { DB_HOST } = require("../config");
 
 dotenv.config();
-const { DB_HOST } = process.env;
-console.log(DB_HOST);
+// const { DB_HOST } = process.env;
+// console.log(DB_HOST);
 
 // new db connection
-mongoose
-  .connect(DB_HOST)
-  .then(() => console.log("Database connection successful"))
-  .catch((error) => {
-    console.log(error.message);
-    process.exit(1);
-  });
+// mongoose
+//   .connect(DB_HOST)
+//   .then(() => console.log("Database connection successful"))
+//   .catch((error) => {
+//     console.log(error.message);
+//     process.exit(1);
+//   });
 
 // old db file
 const contactsPath = path.join(__dirname, "/contacts.json");
