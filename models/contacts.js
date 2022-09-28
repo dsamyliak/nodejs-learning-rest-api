@@ -1,12 +1,11 @@
 const path = require("path");
 const fs = require("fs/promises");
 const { nanoid } = require("nanoid");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+dotenv.config();
 
 // const { DB_HOST } = require("../config");
-
-dotenv.config();
 // const { DB_HOST } = process.env;
 // console.log(DB_HOST);
 
