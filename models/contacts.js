@@ -2,13 +2,16 @@ const path = require("path");
 const fs = require("fs/promises");
 const { nanoid } = require("nanoid");
 const mongoose = require("mongoose");
-const { DB_HOST } = require("./config");
+const { DB_HOST } = require("../helpers/config");
 
 // new db connection
 mongoose
   .connect(DB_HOST)
   .then(() => console.log("Database connection successful"))
-  .catch((error) => console.log(error.message));
+  .catch((error) => {
+    console.log(error.message);
+    process.exit(1);
+  });
 
 // old db file
 const contactsPath = path.join(__dirname, "/contacts.json");
