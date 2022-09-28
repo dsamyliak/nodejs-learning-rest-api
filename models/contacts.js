@@ -2,7 +2,13 @@ const path = require("path");
 const fs = require("fs/promises");
 const { nanoid } = require("nanoid");
 const mongoose = require("mongoose");
-const { DB_HOST } = require("../helpers/config");
+const dotenv = require("dotenv");
+
+// const { DB_HOST } = require("../config");
+
+dotenv.config();
+const { DB_HOST } = process.env;
+console.log(DB_HOST);
 
 // new db connection
 mongoose
