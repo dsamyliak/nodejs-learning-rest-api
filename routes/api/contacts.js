@@ -6,7 +6,7 @@ const {
   isValidId,
   validateBodyFavorite,
 } = require("../../middlewares");
-// const schemas = require("../../schemas/contact");
+
 const { schemas } = require("../../models/contact");
 
 const router = express.Router();
