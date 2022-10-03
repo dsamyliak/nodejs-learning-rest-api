@@ -40,10 +40,12 @@ const addSchema = Joi.object({
   isbn: Joi.string().pattern(isbnRegexp).required(),
 });
 
-const Contact = model("contact", contactSchema);
-// categories => category
-// mice => mouse
+const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
 
-const schemas = { addSchema };
+const Contact = model("contact", contactSchema);
+
+const schemas = { addSchema, updateFavoriteSchema };
 
 module.exports = { Contact, schemas };
