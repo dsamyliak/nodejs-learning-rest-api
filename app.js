@@ -1,14 +1,25 @@
-const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-const hashPassword = async (password) => {
-  // const salt = await bcrypt.genSalt(10);
-  // console.log(salt);
-  const result = await bcrypt.hash(password, 10);
-  console.log(result);
-  const compareResult1 = await bcrypt.compare(password, result);
-  console.log(compareResult1);
-  const compareResult2 = await bcrypt.compare("123456", result);
-  console.log(compareResult2);
+const { SECRET_KEY } = process.env;
+
+const payload = {
+  id: "633e0885925d2e7a4af869aa"
 };
 
-hashPassword("1234567");
+const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
+// console.log(token);
+
+const decodeToken = jwt.decode(token);
+// console.log(decodeToken);
+
+const wrongToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzM2UwODg1OTI1ZDJlN2E0YWY4NjlhYSIsImlhdCI6MTY2NTA1OTQ2NSwiZXhwIjoxNjY1MDYzMDY1fQ.9EBjBXfWYzlWA653JCrouon8losHDuJmlisVmNC1G6S";
+
+try {
+  const result1 = jwt.verify(token, SECRET_KEY);
+  console.log(result1);
+  const result2 = jwt.verify(wrongToken, SECRET_KEY);
+  console.log(result2);
+} catch (error) {
+  console.log(error.message);
+}
