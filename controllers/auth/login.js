@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const { User } = require("../../models/user");
 
@@ -17,7 +18,7 @@ const login = async (req, res) => {
   if (!comparePassword) {
     throw RequestError(401, "Password wrong"); // Email or password wrong
   }
-  const payload = {id: user._id}
+  const payload = { id: user._id };
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
   res.json({ token });
 };
