@@ -12,16 +12,18 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
-    throw RequestError(401, "Email not found"); // Email or password wrong
+    throw RequestError(401, "Email or password is wrong"); // Email or password wrong
   }
   const comparePassword = await bcrypt.compare(password, user.password);
   if (!comparePassword) {
-    throw RequestError(401, "Password wrong"); // Email or password wrong
+    throw RequestError(401, "Email or password is wrong"); // Email or password wrong
   }
   const payload = { id: user._id };
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
-  await User.findByIdAndUpdate(user._id, { token });
-  res.json({ token });
+  const result = await User.findByIdAndUpdate(user._id, { token });
+  res
+    .status(200)
+    .json({ token, user: { email, subscription: result.subscription } });
 };
 
 module.exports = login;

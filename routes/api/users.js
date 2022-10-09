@@ -1,6 +1,6 @@
 const express = require("express");
 
-const ctrl = require("../../controllers/auth");
+const ctrl = require("../../controllers/users");
 
 const { ctrlWrapper } = require("../../helpers");
 
@@ -29,5 +29,8 @@ router.get("/current", authenticate, ctrlWrapper(ctrl.getCurrent));
 
 // logout
 router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
+
+// patch subscription
+router.patch("/", authenticate, ctrlWrapper(ctrl.updateUser));
 
 module.exports = router;
