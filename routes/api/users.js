@@ -4,7 +4,11 @@ const ctrl = require("../../controllers/users");
 
 const { ctrlWrapper } = require("../../helpers");
 
-const { validateBody, authenticate } = require("../../middlewares");
+const {
+  validateBody,
+  validateBodySubscription,
+  authenticate,
+} = require("../../middlewares");
 
 const { schemas } = require("../../models/user");
 
@@ -31,6 +35,11 @@ router.get("/current", authenticate, ctrlWrapper(ctrl.getCurrent));
 router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
 // patch subscription
-router.patch("/", authenticate, ctrlWrapper(ctrl.updateUser));
+router.patch(
+  "/subscription",
+  authenticate,
+  validateBodySubscription(schemas.subscriptionSchema),
+  ctrlWrapper(ctrl.updateUser)
+);
 
 module.exports = router;
