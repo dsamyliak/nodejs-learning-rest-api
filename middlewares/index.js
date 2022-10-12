@@ -3,6 +3,8 @@ const isValidId = require("./isValidId");
 const validateBodyFavorite = require("./validateBodyFavorite");
 const validateBodySubscription = require("./validateBodySubscription");
 const authenticate = require("./authenticate");
+const isAccesible = require("./isAccesible");
+const createFolderIsNotExist = require("./createFolderIsNotExist");
 
 module.exports = {
   validateBody,
@@ -10,4 +12,6 @@ module.exports = {
   validateBodyFavorite,
   validateBodySubscription,
   authenticate,
+  isAccesible,
+  createFolderIsNotExist,
 };
