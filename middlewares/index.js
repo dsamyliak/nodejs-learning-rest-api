@@ -5,6 +5,7 @@ const validateBodySubscription = require("./validateBodySubscription");
 const authenticate = require("./authenticate");
 const isAccesible = require("./isAccesible");
 const createFolderIsNotExist = require("./createFolderIsNotExist");
+const upload = require("./upload");
 
 module.exports = {
   validateBody,
@@ -14,4 +15,5 @@ module.exports = {
   authenticate,
   isAccesible,
   createFolderIsNotExist,
+  upload,
 };

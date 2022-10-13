@@ -31,6 +31,7 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 app.post("/api/upload", upload.single("picture"), async (req, res, next) => {
   const { description } = req.body;
