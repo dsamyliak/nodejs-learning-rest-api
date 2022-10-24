@@ -22,6 +22,12 @@ router.post(
   ctrlWrapper(ctrl.register)
 );
 
+// verify
+router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verify));
+
+// verify repeat, if email didn't receive by new user
+router.post("/verify", ctrlWrapper(ctrl.verify));
+
 // signin
 router.post(
   "/login",
